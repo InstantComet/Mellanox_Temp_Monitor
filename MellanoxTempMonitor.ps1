@@ -273,7 +273,7 @@ function Get-MellanoxDevices {
 function Get-Temperature {
     param($DeviceName)
     try {
-        $mgetTempPath = Join-Path $pathTextBox.Text "mget_temp.bat"
+        $mgetTempPath = Join-Path $pathTextBox.Text "mget_temp_ext.exe"
         Write-Log "Executing: $mgetTempPath -d $DeviceName"
         $output = & $mgetTempPath -d $DeviceName 2>&1
         Write-Log "Output: $output"
@@ -534,7 +534,7 @@ $exportLogButton.Add_Click({
     $saveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
     $saveFileDialog.DefaultExt = "txt"
     $saveFileDialog.AddExtension = $true
-    $saveFileDialog.FileName = "$env:COMPUTERNAME`_Temperature_Log_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
+    $saveFileDialog.FileName = "$env:COMPUTERNAME`_NIC_Temperature_Log_$(Get-Date -Format 'yyyyMMdd_HHmmss').txt"
     
     if ($saveFileDialog.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
         try {
@@ -553,7 +553,7 @@ $exportChartButton.Add_Click({
     $saveFileDialog.Filter = "PNG Image (*.png)|*.png|JPEG Image (*.jpg)|*.jpg|All Files (*.*)|*.*"
     $saveFileDialog.DefaultExt = "png"
     $saveFileDialog.AddExtension = $true
-    $saveFileDialog.FileName = "$env:COMPUTERNAME`_Temperature_Chart_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
+    $saveFileDialog.FileName = "$env:COMPUTERNAME`_NIC_Temperature_Chart_$(Get-Date -Format 'yyyyMMdd_HHmmss')"
     
     if ($saveFileDialog.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
         try {
